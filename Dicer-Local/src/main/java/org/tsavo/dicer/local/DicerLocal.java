@@ -12,7 +12,7 @@ public class DicerLocal implements Dicer{
 		return balance;
 	}
 
-	public BetResult bet(int amount, float odds) {
+	public BetResult bet(long amount, float odds) {
 		int lucky = (int) (Math.random() * 100);
 		boolean win = true;
 		if(odds * 100 > lucky){
@@ -28,7 +28,7 @@ public class DicerLocal implements Dicer{
 		return null;
 	}
 
-	public void withdraw(String anAddress, int anAmount, String a2fa) {
+	public void withdraw(String anAddress, long anAmount, String a2fa) {
 	}
 
 	public GameInfo getInfo(float odds) {

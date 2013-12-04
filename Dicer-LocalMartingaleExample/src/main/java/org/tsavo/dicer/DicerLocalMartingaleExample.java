@@ -37,7 +37,7 @@ public class DicerLocalMartingaleExample {
 			}
 		};
 		strategy.addBettingStrategyListener(listener);
-		strategy.setStartingBet(100);
+		strategy.setStartingBet(10000);
 		strategy.start();
 		
 		while(strategy.running){
