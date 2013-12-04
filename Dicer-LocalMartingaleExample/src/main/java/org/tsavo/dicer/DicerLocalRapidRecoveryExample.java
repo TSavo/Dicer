@@ -47,7 +47,6 @@ public class DicerLocalRapidRecoveryExample {
 		strategy.start();
 		
 		while(strategy.running){
-			
 		}
 	}
 	

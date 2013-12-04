@@ -9,7 +9,7 @@ public class DicerLocalMartingaleExample {
 	static MartingaleBettingStrategy strategy = new MartingaleBettingStrategy(dicer);
 	
 	public static void main(String[] args){
-		dicer.setBalance(1000000);
+		dicer.setBalance(100000);
 		BettingStrategyListener listener = new BettingStrategyListener() {
 			
 			public void stopped(String aReason) {
@@ -37,7 +37,7 @@ public class DicerLocalMartingaleExample {
 			}
 		};
 		strategy.addBettingStrategyListener(listener);
-		strategy.setStartingBet(10000);
+		strategy.setStartingBet(10);
 		strategy.start();
 		
 		while(strategy.running){

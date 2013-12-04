@@ -1,22 +1,8 @@
 package org.tsavo.dicer.rapid;
 
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.cert.CertificateException;
-import java.security.cert.X509Certificate;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Properties;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
 
 import org.tsavo.dicer.BetResult;
 import org.tsavo.dicer.BettingStrategy;
@@ -124,50 +110,6 @@ public class RapidRecoveryBettingStrategy implements BettingStrategy {
 	}
 
 	long lastWin = System.currentTimeMillis();
-
-	public void diableSSLVerification() throws NoSuchAlgorithmException,
-			KeyManagementException {
-
-		class MyManager implements X509TrustManager {
-
-			public X509Certificate[] getAcceptedIssuers() {
-				return null;
-			}
-
-			public void checkClientTrusted(X509Certificate[] chain,
-					String authType) throws CertificateException {
-			}
-
-			public void checkServerTrusted(X509Certificate[] chain,
-					String authType) throws CertificateException {
-
-			}
-		}
-
-		TrustManager[] managers = new TrustManager[] { new MyManager() };
-		final SSLContext sslContext = SSLContext.getInstance("SSL");
-		sslContext.init(null, managers, new SecureRandom());
-
-		HttpsURLConnection.setDefaultSSLSocketFactory(sslContext
-				.getSocketFactory());
-		HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
-			public boolean verify(String hostname, SSLSession session) {
-				return true;
-			}
-		});
-	}
-
-	public void useHTTPProxy(String host, int port) {
-		Properties props = System.getProperties();
-		props.put("http.proxyHost", host);
-		props.put("http.proxyPort", "" + port);
-	}
-
-	public void useHTTPSProxy(String host, int port) {
-		Properties props = System.getProperties();
-		props.put("https.proxyHost", host);
-		props.put("https.proxyPort", "" + port);
-	}
 
 	public void start() {
 		running = true;
@@ -320,8 +262,7 @@ public class RapidRecoveryBettingStrategy implements BettingStrategy {
 	}
 
 	public void stop(String aReason) {
-		// TODO Auto-generated method stub
-
+		running = false;
 	}
 
 	public void addBettingStrategyListener(BettingStrategyListener aListener) {
