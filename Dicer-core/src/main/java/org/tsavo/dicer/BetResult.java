@@ -3,14 +3,14 @@ package org.tsavo.dicer;
 public class BetResult {
 
 	public int id;
-	public int amount;
+	public long amount;
 	public int lessthan;
 	public boolean win;
-	public int balance;
+	public long balance;
 	public int luckyNumber;
 	
-	public BetResult(int id, int amount, int lessthan, int luckyNumber,
-			boolean win, int balance) {
+	public BetResult(int id, long amount, int lessthan, int luckyNumber,
+			boolean win, long balance) {
 		super();
 		this.id = id;
 		this.amount = amount;
@@ -30,7 +30,7 @@ public class BetResult {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getAmount() {
+	public long getAmount() {
 		return amount;
 	}
 	public void setAmount(int amount) {
@@ -48,7 +48,7 @@ public class BetResult {
 	public void setWin(boolean win) {
 		this.win = win;
 	}
-	public int getBalance() {
+	public long getBalance() {
 		return balance;
 	}
 	public void setBalance(int balance) {

@@ -5,9 +5,9 @@
     <artifactId>Dicer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>Dicer-Coinroll</artifactId>
-  <name>Dicer-Coinroll</name>
-  <description>Dicer implementation for Coinroll API.</description>
+  <artifactId>Dicer-Local</artifactId>
+  <name>Dicer Local</name>
+  <description>A Dicer implementation which simulates a dice site, allowing you to test your strategies before running them.</description>
   <dependencies>
   	<dependency>
   		<groupId>org.tsavo</groupId>

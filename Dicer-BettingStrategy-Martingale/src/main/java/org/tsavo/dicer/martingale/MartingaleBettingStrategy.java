@@ -30,7 +30,7 @@ public class MartingaleBettingStrategy implements BettingStrategy {
 
 			public void run() {
 				int numberOfTurns = 1;
-				int balance = dicer.getBalance();
+				long balance = dicer.getBalance();
 				if(balance < startingBet){
 					stop("Starting bet is higher than the current balance.");
 					return;

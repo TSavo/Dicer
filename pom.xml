@@ -9,6 +9,8 @@
 		<module>Dicer-Coinroll</module>
 		<module>Dicer-BettingStrategy-Martingale</module>
 		<module>Dicer-core</module>
+		<module>Dicer-Local</module>
+		<module>Dicer-LocalMartingaleExample</module>
 	</modules>
 	<dependencies>
 		<dependency>

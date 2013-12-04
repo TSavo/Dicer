@@ -5,13 +5,18 @@
     <artifactId>Dicer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
-  <artifactId>Dicer-Coinroll</artifactId>
-  <name>Dicer-Coinroll</name>
-  <description>Dicer implementation for Coinroll API.</description>
+  <artifactId>Dicer-LocalMartingaleExample</artifactId>
+  <name>Dicer Local Martingale Example</name>
+  <description>An example of combining the Martingale betting strategy with the local implementation.</description>
   <dependencies>
   	<dependency>
   		<groupId>org.tsavo</groupId>
-  		<artifactId>Dicer-core</artifactId>
+  		<artifactId>Dicer-BettingStrategy-Martingale</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.tsavo</groupId>
+  		<artifactId>Dicer-Local</artifactId>
   		<version>0.0.1-SNAPSHOT</version>
   	</dependency>
   </dependencies>
