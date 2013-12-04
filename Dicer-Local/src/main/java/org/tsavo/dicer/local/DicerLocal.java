@@ -16,12 +16,12 @@ public class DicerLocal implements Dicer{
 		int lucky = (int) (Math.random() * 100);
 		boolean win = true;
 		if(odds * 100 > lucky){
-			balance += amount * (1 / odds);
+			balance += (amount * ((1 / odds)-1));
 		}else{
 			balance -= amount;
 			win = false;
 		}
-		return new BetResult(0, amount, (int) (odds * 100), lucky, win, balance);
+		return new BetResult(null, amount, (int) (odds * 100), lucky, win, balance);
 	}
 
 	public String getDepositAddress() {

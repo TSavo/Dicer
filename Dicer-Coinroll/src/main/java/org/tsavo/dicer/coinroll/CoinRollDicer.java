@@ -63,8 +63,7 @@ public class CoinRollDicer implements Dicer {
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 	}
 
-	public CoinRollDicer(String aUsername, String aPassword)
-			throws NoSuchAlgorithmException, KeyManagementException {
+	public CoinRollDicer(String aUsername, String aPassword) {
 
 		username = aUsername;
 		password = aPassword;
