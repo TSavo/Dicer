@@ -128,7 +128,7 @@ public class RapidRecoveryBettingStrategy implements BettingStrategy {
 				BetResult bet = dicer.bet(1, .498f);
 				long highscore = bet.getBalance();
 
-				DecimalFormat format = new DecimalFormat("#.########");
+				//DecimalFormat format = new DecimalFormat("#.########");
 				while (running) {
 					if (bet.isWin() || (bet.getBalance() - highscore) > 0) {
 
@@ -181,6 +181,7 @@ public class RapidRecoveryBettingStrategy implements BettingStrategy {
 						if (startingBetListener != null) {
 							startingBetListener.setStartingBet(start);
 						}
+						broadcastBetSizeChanged(start);
 						if (loss == 0 && inBadStreak) {
 							inBadStreak = false;
 							System.out.println("Recovered: " + bet.getBalance()
@@ -279,9 +280,9 @@ public class RapidRecoveryBettingStrategy implements BettingStrategy {
 			listener.betMade(aResult);
 		}
 	}
-	private void broadcastBetSizeChanged(int currentBet) {
+	private void broadcastBetSizeChanged(long start2) {
 		for(BettingStrategyListener listener: listeners){
-			listener.betSizeChanged(currentBet);
+			listener.betSizeChanged(start2);
 		}
 	}
 	private void broadcastOddsChanged(float odds) {

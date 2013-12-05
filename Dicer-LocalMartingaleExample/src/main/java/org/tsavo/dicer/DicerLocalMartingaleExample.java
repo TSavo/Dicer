@@ -27,13 +27,13 @@ public class DicerLocalMartingaleExample {
 				
 			}
 			
-			public void betSizeChanged(int anAmount) {
-				// TODO Auto-generated method stub
-				
-			}
-			
 			public void betMade(BetResult aResult) {
 				System.out.println(aResult.isWin() + " " + aResult.getBalance());
+			}
+
+			public void betSizeChanged(long start) {
+				// TODO Auto-generated method stub
+				
 			}
 		};
 		strategy.addBettingStrategyListener(listener);

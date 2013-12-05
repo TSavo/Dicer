@@ -1,8 +1,5 @@
 package org.tsavo.dicer.coinroll;
 
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
