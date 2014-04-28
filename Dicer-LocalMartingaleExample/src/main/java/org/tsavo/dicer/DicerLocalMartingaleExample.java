@@ -28,7 +28,7 @@ public class DicerLocalMartingaleExample {
 			}
 			
 			public void betMade(BetResult aResult) {
-				System.out.println(aResult.isWin() + " " + aResult.getBalance());
+				System.out.println(aResult.isWin() + (aResult.isWin() ? "  " : " ") + aResult.getBalance() + " (" + aResult.getAmount() + ")");
 			}
 
 			public void betSizeChanged(long start) {
@@ -37,12 +37,11 @@ public class DicerLocalMartingaleExample {
 			}
 		};
 		strategy.addBettingStrategyListener(listener);
-		strategy.setStartingBet(10);
+		strategy.setStartingBet(1);
 		strategy.start();
 		
 		while(strategy.running){
 			
 		}
 	}
-	
 }

@@ -3,6 +3,8 @@ package org.tsavo.dicer.coinroll;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -58,12 +60,28 @@ public class CoinRollDicer implements Dicer {
 
 	static {
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+		headers.set("accept","application/json, text/javascript, */*; q=0.01");
+		//headers.set("accept-encoding","gzip,deflate,sdch");
+		headers.set("accept-language","en-US,en;q=0.8");
+		headers.set("cookie", "__cfduid=df3ae63f79cda281df743c657f57ecb6a1385611192370; user=f887-6853-6765; password=0BoDZH8wDiV5LZ; customgames=63000%2C64000%2C59000; cf_clearance=c7109047b7b8f46c48bca456a2a123dd41026475-1392012617-604800");
+		headers.set("origin","https://coinroll.it");
+		headers.set("referer", "https://coinroll.it/play");
+		headers.set("x-requested-with","XMLHttpRequest");
+		headers.set("method", "POST");
+//		headers.set("content-length","43");
+		headers.set("scheme", "https");
+		headers.set("user-agent","Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.107 Safari/537.36");
+
 	}
 
 	public CoinRollDicer(String aUsername, String aPassword) {
 
 		username = aUsername;
 		password = aPassword;
+		SimpleClientHttpRequestFactory rf =
+			    (SimpleClientHttpRequestFactory) template.getRequestFactory();
+		rf.setReadTimeout(1 * 5000);
+		rf.setConnectTimeout(1 * 5000);
 	}
 
 	public BetResult makeBet(long amount, int f) {
@@ -76,7 +94,9 @@ public class CoinRollDicer implements Dicer {
 
 		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(
 				bodyMap, headers);
+		
 
+		
 		return template.postForEntity("https://coinroll.it/bet", request,
 				BetResult.class).getBody();
 
@@ -90,6 +110,7 @@ public class CoinRollDicer implements Dicer {
 		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(
 				bodyMap, headers);
 
+		
 		return template
 				.postForEntity("https://coinroll.it/getbalance", request,
 						BalanceResult.class).getBody().getBalance();
@@ -121,9 +142,9 @@ public class CoinRollDicer implements Dicer {
 	}
 
 	public org.tsavo.dicer.BetResult bet(long amount, float odds) {
-		BetResult result = makeBet(amount, (int) (odds * 65535));
+		BetResult result = makeBet(amount, (int) (odds * 64000));
 		return new org.tsavo.dicer.BetResult(result.getId(),
-				result.getAmount(), (long) (odds * 65535), result.getLucky(),
+				result.getAmount(), (long) (odds * 64000), result.getLucky(),
 				result.isWin(), result.getBalance());
 	}
 

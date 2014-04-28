@@ -1,17 +1,14 @@
-package org.tsavo.dicer.priority92;
+package com.tsavo.dicer.paroli;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 import org.tsavo.dicer.AbstractBettingStrategy;
 import org.tsavo.dicer.BetResult;
 import org.tsavo.dicer.Dicer;
 
-public class Priority92BettingStrategy extends AbstractBettingStrategy {
+public class ParoliBettingStrategy extends AbstractBettingStrategy {
 
-	private List<Long> recoveries = new ArrayList<>();
-	public long startingBet = 100;
+	public long startingBet = 10;
 
 	public long getStartingBet() {
 		return startingBet;
@@ -21,12 +18,13 @@ public class Priority92BettingStrategy extends AbstractBettingStrategy {
 		this.startingBet = startingBet;
 	}
 
-	public long currentBet = 100;
+	public long currentBet = 10;
 	public long highscore = 0;
 	public int winsInARow = 0;
 
-	public Priority92BettingStrategy(Dicer aDicer) {
+	public ParoliBettingStrategy(Dicer aDicer) {
 		super(aDicer);
+
 	}
 
 	@Override
@@ -42,22 +40,24 @@ public class Priority92BettingStrategy extends AbstractBettingStrategy {
 				while (running) {
 					highscore = Math.max(highscore, result.getBalance());
 					broadcastBet(result);
-
 					balance = result.getBalance();
-					if (!result.isWin()) {
-						currentBet *= 10;
-					}
-					if (highscore == result.getBalance()) {
+					if (result.isWin()) {
+						winsInARow++;
+						if (winsInARow < 3) {
+							currentBet *= 20;
+						} else {
+							currentBet = startingBet;
+							winsInARow=0;
+						}
+					} else {
+						winsInARow = 0;
 						currentBet = startingBet;
 					}
 
-					if (currentBet > result.getBalance() ) {
-						currentBet = startingBet;
-						highscore = 0;
-					}
 					if (!running) {
 						break;
 					}
+
 					if (balance < currentBet) {
 						stop("Current bet is higher than the current balance.");
 						return;
@@ -65,7 +65,7 @@ public class Priority92BettingStrategy extends AbstractBettingStrategy {
 					broadcastBetSizeChanged(currentBet);
 					while (running) {
 						try {
-							result = dicer.bet(currentBet, .9f);
+							result = dicer.bet(currentBet, 0.6f);
 							break;
 						} catch (Exception e) {
 							e.printStackTrace();

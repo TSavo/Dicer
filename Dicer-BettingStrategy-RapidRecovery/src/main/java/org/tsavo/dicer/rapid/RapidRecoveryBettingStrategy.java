@@ -226,7 +226,7 @@ public class RapidRecoveryBettingStrategy implements BettingStrategy {
 							if (inBadStreak) {
 								bet = dicer.bet(start, .498f);
 							} else {
-								bet = dicer.bet(100, .916f);
+								bet = dicer.bet(500, .916f);
 							}
 						} catch (Exception e) {
 							continue;

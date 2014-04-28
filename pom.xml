@@ -13,6 +13,8 @@
 		<module>Dicer-LocalMartingaleExample</module>
 		<module>Dicer-BettingStrategy-RapidRecovery</module>
 		<module>Dicer-BettingStrategy-PriorityNinetyTwo</module>
+		<module>Dicer-BettingStrategy-Guetting</module>
+		<module>Dicer-BettingStrategy-Paroli</module>
 	</modules>
 	<dependencies>
 		<dependency>

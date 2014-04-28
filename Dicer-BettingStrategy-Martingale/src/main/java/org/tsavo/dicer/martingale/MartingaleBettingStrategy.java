@@ -11,14 +11,16 @@ import org.tsavo.dicer.Dicer;
 public class MartingaleBettingStrategy implements BettingStrategy {
 
 	public boolean running = false;
-	public int startingBet = 1;
-	public int currentBet = 1;
-	public float odds = 0.5f;
+	public int startingBet = 5;
+	public int currentBet = 5;
+	public float odds = 0.48f;
 	public float multiplier = 2;
 	public float stopLossInAmount = 0;
 	public float stopLossInTurns = 0;
 	public Dicer dicer;
 	public List<BettingStrategyListener> listeners = new ArrayList<BettingStrategyListener>();
+	long lastReport = System.currentTimeMillis();
+	long lastBalance;
 	
 	public MartingaleBettingStrategy(Dicer aDicer){
 		dicer = aDicer;
@@ -30,7 +32,7 @@ public class MartingaleBettingStrategy implements BettingStrategy {
 
 			public void run() {
 				int numberOfTurns = 1;
-				long balance = dicer.getBalance();
+				long balance = lastBalance = dicer.getBalance();
 				if(balance < startingBet){
 					stop("Starting bet is higher than the current balance.");
 					return;
@@ -38,6 +40,11 @@ public class MartingaleBettingStrategy implements BettingStrategy {
 				BetResult result = dicer.bet(startingBet, odds);
 				while(running){
 					broadcastBet(result);
+					if(lastReport+30000 < System.currentTimeMillis()){
+						lastReport = System.currentTimeMillis();
+						System.out.println(result.balance - lastBalance + " every 30 seconds.");
+						lastBalance = result.balance;
+					}
 					if(result.isWin()){
 						numberOfTurns = 1;
 						balance = result.getBalance();

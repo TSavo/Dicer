@@ -5,7 +5,6 @@ import org.tsavo.dicer.rapid.RapidRecoveryBettingStrategy;
 
 public class DicerLocalRapidRecoveryExample {
 
-	//static Dicer dicer = new CoinRollDicer("f887-6853-6765", "0BoDZH8wDiV5LZ");
 	static DicerLocal dicer = new DicerLocal();
 	static RapidRecoveryBettingStrategy strategy = new RapidRecoveryBettingStrategy(dicer);
 	
