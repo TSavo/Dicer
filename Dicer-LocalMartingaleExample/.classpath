@@ -26,5 +26,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/Dicer-BettingStrategy-Guetting"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/Dicer-BettingStrategy-Paroli"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -1,7 +1,5 @@
 package com.tsavo.dicer.paroli;
 
-import java.util.Collections;
-
 import org.tsavo.dicer.AbstractBettingStrategy;
 import org.tsavo.dicer.BetResult;
 import org.tsavo.dicer.Dicer;
@@ -44,7 +42,7 @@ public class ParoliBettingStrategy extends AbstractBettingStrategy {
 					if (result.isWin()) {
 						winsInARow++;
 						if (winsInARow < 3) {
-							currentBet *= 20;
+							currentBet *= 10;
 						} else {
 							currentBet = startingBet;
 							winsInARow=0;

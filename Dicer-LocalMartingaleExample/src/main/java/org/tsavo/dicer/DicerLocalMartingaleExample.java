@@ -1,15 +1,19 @@
 package org.tsavo.dicer;
 
-import org.tsavo.dicer.local.DicerLocal;
-import org.tsavo.dicer.martingale.MartingaleBettingStrategy;
+import org.tsavo.dicer.coinroll.CoinRollDicer;
+
+import com.tsavo.dicer.paroli.ParoliBettingStrategy;
 
 public class DicerLocalMartingaleExample {
 
-	static DicerLocal dicer = new DicerLocal();
-	static MartingaleBettingStrategy strategy = new MartingaleBettingStrategy(dicer);
+//	static DicerLocal dicer = new DicerLocal();
+	static Dicer dicer = new CoinRollDicer("f887-6853-6765",
+			"0BoDZH8wDiV5LZ");
+
+	static ParoliBettingStrategy strategy = new ParoliBettingStrategy(dicer);
 	
 	public static void main(String[] args){
-		dicer.setBalance(100000);
+		//dicer.setBalance(2755712);
 		BettingStrategyListener listener = new BettingStrategyListener() {
 			
 			public void stopped(String aReason) {

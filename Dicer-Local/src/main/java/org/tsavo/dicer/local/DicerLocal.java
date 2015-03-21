@@ -13,7 +13,7 @@ public class DicerLocal implements Dicer{
 	}
 
 	public BetResult bet(long amount, float odds) {
-		int lucky = (int) (Math.random() * 100);
+		int lucky = (int) (Math.random() * 98);
 		boolean win = true;
 		if(odds * 100 > lucky){
 			balance += (amount * ((1 / odds)-1));

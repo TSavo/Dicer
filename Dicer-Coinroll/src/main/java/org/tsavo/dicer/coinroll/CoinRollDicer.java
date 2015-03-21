@@ -60,17 +60,17 @@ public class CoinRollDicer implements Dicer {
 
 	static {
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-		headers.set("accept","application/json, text/javascript, */*; q=0.01");
-		//headers.set("accept-encoding","gzip,deflate,sdch");
-		headers.set("accept-language","en-US,en;q=0.8");
-		headers.set("cookie", "__cfduid=df3ae63f79cda281df743c657f57ecb6a1385611192370; user=f887-6853-6765; password=0BoDZH8wDiV5LZ; customgames=63000%2C64000%2C59000; cf_clearance=c7109047b7b8f46c48bca456a2a123dd41026475-1392012617-604800");
-		headers.set("origin","https://coinroll.it");
-		headers.set("referer", "https://coinroll.it/play");
-		headers.set("x-requested-with","XMLHttpRequest");
-		headers.set("method", "POST");
-//		headers.set("content-length","43");
-		headers.set("scheme", "https");
-		headers.set("user-agent","Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.107 Safari/537.36");
+//		headers.set("accept","application/json, text/javascript, */*; q=0.01");
+//		//headers.set("accept-encoding","gzip,deflate,sdch");
+//		headers.set("accept-language","en-US,en;q=0.8");
+//		headers.set("cookie", "__cfduid=df3ae63f79cda281df743c657f57ecb6a1385611192370; user=f887-6853-6765; password=0BoDZH8wDiV5LZ; customgames=63000%2C64000%2C59000; cf_clearance=c7109047b7b8f46c48bca456a2a123dd41026475-1392012617-604800");
+//		headers.set("origin","https://coinroll.it");
+//		headers.set("referer", "https://coinroll.it/play");
+//		headers.set("x-requested-with","XMLHttpRequest");
+//		headers.set("method", "POST");
+////		headers.set("content-length","43");
+//		headers.set("scheme", "https");
+//		headers.set("user-agent","Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1700.107 Safari/537.36");
 
 	}
 
@@ -97,7 +97,7 @@ public class CoinRollDicer implements Dicer {
 		
 
 		
-		return template.postForEntity("https://coinroll.it/bet", request,
+		return template.postForEntity("https://coinroll.com/bet", request,
 				BetResult.class).getBody();
 
 	}
@@ -112,7 +112,7 @@ public class CoinRollDicer implements Dicer {
 
 		
 		return template
-				.postForEntity("https://coinroll.it/getbalance", request,
+				.postForEntity("https://coinroll.com/getbalance", request,
 						BalanceResult.class).getBody().getBalance();
 	}
 
@@ -124,7 +124,7 @@ public class CoinRollDicer implements Dicer {
 		bodyMap.add("amount", "" + amount);
 		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(
 				bodyMap, headers);
-		return template.postForEntity("https://coinroll.it/withdraw", request,
+		return template.postForEntity("https://coinroll.com/withdraw", request,
 				WithdrawResult.class).getBody();
 	}
 
@@ -137,7 +137,7 @@ public class CoinRollDicer implements Dicer {
 		HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<MultiValueMap<String, String>>(
 				bodyMap, headers);
 
-		return template.postForEntity("https://coinroll.it/getbalance",
+		return template.postForEntity("https://coinroll.com/getbalance",
 				request, DepositStatusResult.class).getBody();
 	}
 
