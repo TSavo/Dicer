@@ -6,22 +6,25 @@ import org.tsavo.dicer.GameInfo;
 
 public class DicerLocal implements Dicer{
 
-	long balance;
+	long balance = 100000000;
 	
 	public long getBalance() {
 		return balance;
 	}
 
 	public BetResult bet(long amount, float odds) {
-		int lucky = (int) (Math.random() * 98);
+		if(amount > balance){
+			throw new RuntimeException("Bet larger than balance.");
+		}
+		int lucky = (int) (Math.random() * 100);
 		boolean win = true;
-		if(odds * 100 > lucky){
+		if(odds * 98 > lucky){
 			balance += (amount * ((1 / odds)-1));
 		}else{
 			balance -= amount;
 			win = false;
 		}
-		return new BetResult(null, amount, (int) (odds * 100), lucky, win, balance);
+		return new BetResult(null, amount, (int) (odds * 98), lucky, win, balance);
 	}
 
 	public String getDepositAddress() {

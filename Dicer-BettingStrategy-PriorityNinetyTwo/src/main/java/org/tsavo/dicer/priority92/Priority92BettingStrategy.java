@@ -44,11 +44,13 @@ public class Priority92BettingStrategy extends AbstractBettingStrategy {
 					broadcastBet(result);
 
 					balance = result.getBalance();
-					if (!result.isWin() && balance + currentBet < highscore) {
+					if (!result.isWin()) {
 						currentBet *= 11;
+					}else{
+						currentBet = startingBet;
 					}
-					if(currentBet > 10000){
-						currentBet = 10;
+					if(currentBet > 100000){
+						currentBet = startingBet;
 						highscore = 0;
 					}
 					if (highscore == result.getBalance()) {
