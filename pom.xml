@@ -15,6 +15,7 @@
 		<module>Dicer-BettingStrategy-PriorityNinetyTwo</module>
 		<module>Dicer-BettingStrategy-Guetting</module>
 		<module>Dicer-BettingStrategy-Paroli</module>
+		<module>Dicer-SWTGUI</module>
 	</modules>
 	<dependencies>
 		<dependency>

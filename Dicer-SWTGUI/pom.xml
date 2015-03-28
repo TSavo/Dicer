@@ -5,6 +5,7 @@
 		<groupId>org.tsavo</groupId>
 		<artifactId>Dicer</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>Dicer-SWTGUI</artifactId>
 	<repositories>
